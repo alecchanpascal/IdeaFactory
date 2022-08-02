@@ -1,0 +1,4 @@
+<h1><%= @idea.title %></h1>
+<h4><%= @idea.description %></h4>
+<%= button_to "Edit", edit_idea_path, :method => :get, class: "btn btn-outline-primary" %>
+<%= button_to "Delete", idea_path(@idea), method: :delete, data: {confirm: "Are You Sure?"}, class: "btn btn-outline-primary" %>

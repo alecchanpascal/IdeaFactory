@@ -1,0 +1,12 @@
+<h1>Got a New Idea? Let Us Know By Submitting One in the Form Below!</h1>
+<%= form_with model: @idea do |form| %>
+    <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control" %>
+    </div>
+    <%= form.submit :"Add Idea", class: "btn btn-outline-primary" %>
+<% end %>

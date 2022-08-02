@@ -1,0 +1,9 @@
+<h4>Idea Factory</h4>
+<% @ideas.each do |idea| %>
+<div class="card">
+    <div class="card-body">
+        <h4><%= link_to idea.title, idea_path(idea), class: "card-title" %></h4>
+        <h4 class="card-text"><%= idea.description %></h4>
+    </div>
+</div>
+<% end %>
