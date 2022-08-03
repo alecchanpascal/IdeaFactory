@@ -1,9 +1,11 @@
-<h4>Idea Factory</h4>
+<h5>Idea Factory</h5>
 <% @ideas.each do |idea| %>
 <div class="card">
     <div class="card-body">
-        <h4><%= link_to idea.title, idea_path(idea), class: "card-title" %></h4>
-        <h4 class="card-text"><%= idea.description %></h4>
+        <h5><%= link_to idea.title, idea_path(idea), class: "card-title" %></h5>
+        <h5 class="card-text"><%= idea.description %></h5>
+        <h5><%= "By: " + idea.user.name %></h5>
     </div>
 </div>
+<br>
 <% end %>

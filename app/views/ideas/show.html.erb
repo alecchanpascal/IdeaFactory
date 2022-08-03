@@ -1,4 +1,31 @@
 <h1><%= @idea.title %></h1>
-<h4><%= @idea.description %></h4>
-<%= button_to "Edit", edit_idea_path, :method => :get, class: "btn btn-outline-primary" %>
-<%= button_to "Delete", idea_path(@idea), method: :delete, data: {confirm: "Are You Sure?"}, class: "btn btn-outline-primary" %>
+<h3><%= @idea.description %></h3>
+<h6><%= "By: #{@idea.user.name} #{time_ago_in_words(@idea.created_at)} ago"%></h6>
+<% if can?(:crud, @idea) %>
+    <div>
+        <%= button_to "Edit", edit_idea_path, :method => :get, class: "btn btn-outline-primary" %>
+        <%= button_to "Delete", idea_path(@idea), method: :delete, data: {confirm: "Are You Sure?"}, class: "btn btn-outline-primary" %>
+    </div>
+<% end %>
+<hr>
+
+<h3>Reviews</h3>
+<%= form_with(model:[@idea, @review]) do |f| %>
+    <div>
+        <%= f.text_area :body, :class => "form-control", placeholder: "What's your take?" %>
+    </div>
+    <%= f.submit :Submit, :class => "btn btn-outline-primary" %>
+<% end %>
+<br> 
+
+<% @reviews.each do |review| %>
+    <%= review.body %>
+    <br>
+    <%= "| By: #{review.user.name} #{time_ago_in_words(review.created_at)} ago"%>
+    <div>
+        <% if can?(:crud, review) %>
+            <%= link_to "Delete", idea_review_path(@idea, review), method: :delete, data: {confirm: "Are You Sure?"} %>
+        <% end %>
+    </div>
+    <br>
+<% end %>
