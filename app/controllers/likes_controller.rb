@@ -1,17 +1,22 @@
 class LikesController < ApplicationController
     def create
         @idea = Idea.find(params[:idea_id])
-        if @idea.user.id == current_user.id
-            flash[:Alert] = "Cannot Like Your Own Idea!"
+        if !current_user
+            flash[:Alert] = "You Must Be Signed In To Like An Idea!"
             redirect_back(fallback_location: root_path)
         else
-            @like = Like.new(user: current_user, idea: @idea)
-            if @like.save
-                flash[:Notice] = "Idea Liked!"
+            if @idea.user.id == current_user.id
+                flash[:Alert] = "Cannot Like Your Own Idea!"
+                redirect_back(fallback_location: root_path)
             else
-                flash[:Error] = @like.errors.full_messages.to_sentence
+                @like = Like.new(user: current_user, idea: @idea)
+                if @like.save
+                    flash[:Notice] = "Idea Liked!"
+                else
+                    flash[:Error] = @like.errors.full_messages.to_sentence
+                end
+                redirect_back(fallback_location: root_path)
             end
-            redirect_back(fallback_location: root_path)
         end
     end
 
