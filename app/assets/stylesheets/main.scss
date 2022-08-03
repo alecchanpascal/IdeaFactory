@@ -3,3 +3,30 @@ body {
     margin-left: 1rem;
     margin-right: 1rem;
 }
+
+#likes {
+    display: flex;
+    justify-content: flex-end;
+}
+
+//Header
+#navbarNav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#login {
+    display: flex;
+    justify-content: flex-end;
+}
+   
+//Show
+#buttons {
+    display: flex;
+    margin-top: 1rem;
+}
+
+#button {
+    margin-left: 1rem;
+    margin-right: 1rem; 
+}

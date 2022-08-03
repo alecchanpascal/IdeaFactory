@@ -11,16 +11,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand navbar-light bg-light">
-    <%= link_to "Idea Factory", root_path, :class => "navbar-brand text-primary"%>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <%= link_to "New Post", new_idea_path, :class => "nav-link active text-primary" %>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <div id="login">
     <% if user_signed_in? %>
       Hello <%= current_user.name %>,
       <%= link_to "Logout", session_path, method: :delete, data: {confirm: "Are You Sure You Want To Log Out?"}%>
@@ -28,6 +19,17 @@
       <%= link_to "Login", new_session_path %> |
       <%= link_to "Sign Up", new_user_path %>
     <% end %>
+    </div>
+    <nav class="navbar navbar-expand navbar-light">
+    <%= link_to "Idea Factory", root_path, :class => "navbar-brand text-primary"%>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <%= button_to "New Post", new_idea_path, :class => "btn btn-outline-primary" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <hr>
     <% flash.each do |type, message| %>
       <div class="alert alert-info">
