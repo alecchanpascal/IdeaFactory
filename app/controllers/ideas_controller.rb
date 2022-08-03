@@ -48,6 +48,10 @@ class IdeasController < ApplicationController
         end
     end
 
+    def liked
+        @ideas = current_user.liked_ideas
+    end 
+
     private
     
     def idea_params
