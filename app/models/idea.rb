@@ -6,5 +6,5 @@ class Idea < ApplicationRecord
 
     has_many :reviews, dependent: :destroy
     has_many :likes, dependent: :destroy
-    has_many :likers, dependent: :destroy, source: :user
+    has_many :likers, through: :likes, source: :user
 end

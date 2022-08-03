@@ -7,6 +7,12 @@
         <%= button_to "Delete", idea_path(@idea), method: :delete, data: {confirm: "Are You Sure?"}, class: "btn btn-outline-primary" %>
     </div>
 <% end %>
+<% if @like.present? %>
+    <%= button_to "Unlike", like_path(@like), method: :delete, class: "btn btn-outline-primary" %>
+<% else %>
+    <%= button_to "Like", idea_likes_path(@idea), method: :post, class: "btn btn-outline-primary" %>
+<% end %>
+<%= "Likes: #{@idea.likes.count}" %>
 <hr>
 
 <h3>Reviews</h3>

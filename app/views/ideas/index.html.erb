@@ -4,7 +4,14 @@
     <div class="card-body">
         <h5><%= link_to idea.title, idea_path(idea), class: "card-title" %></h5>
         <h5 class="card-text"><%= idea.description %></h5>
-        <h5><%= "By: " + idea.user.name %></h5>
+        <%= "By: #{idea.user.name} #{time_ago_in_words(idea.created_at)} ago" %>
+        <% @like = idea.likes.find_by(user: current_user) %>
+        <% if @like.present? %>
+            <%= button_to "Unlike", like_path(@like), method: :delete %>
+        <% else %>
+            <%= button_to "Like", idea_likes_path(idea), method: :post %>
+        <% end %>
+        <%= "Likes: #{idea.likes.count}" %>
     </div>
 </div>
 <br>
