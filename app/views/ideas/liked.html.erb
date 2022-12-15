@@ -1,0 +1,21 @@
+<h1>Liked Ideas</h1>
+<% @ideas.each do |idea| %>
+<div class="card">
+    <div class="card-body">
+        <h4 id="title"><%= link_to idea.title, idea_path(idea), class: "card-title" %></h4>
+        <h5 class="card-text"><%= idea.description %></h5>
+        <%= "By: #{idea.user.name} - #{time_ago_in_words(idea.created_at)} ago" %>
+        <hr>
+        <% @like = idea.likes.find_by(user: current_user) %>
+        <% if @like.present? %>
+            <%= button_to "Unlike", like_path(@like), method: :delete, class: "btn btn-outline-primary" %>
+        <% else %>
+            <%= button_to "Like", idea_likes_path(idea), method: :post, class: "btn btn-outline-primary" %>
+        <% end %>
+        <div id="likes">
+            <%= "Likes: #{idea.likes.count}" %>
+        </div>
+    </div>
+</div>
+<br>
+<% end %>
